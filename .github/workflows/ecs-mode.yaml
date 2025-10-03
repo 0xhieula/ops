@@ -71,6 +71,7 @@ jobs:
   build:
     name: Build image and Release to ECR
     needs: initialize
+    environment: ${{ github.ref_name }}
     runs-on: [self-hosted, runner]
     env:
       IMAGE: "${{ secrets.ECR_REPOSITORY}}:${{ needs.initialize.outputs.IMAGE_TAG }}"
