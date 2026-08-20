@@ -77,21 +77,24 @@
       tags:
         - docker
 
-    - name: Install python packages
+    - name: Install docker python package
       pip:
         name: docker
+        extra_args: --break-system-packages
       tags:
         - docker
 
-    - name: Install python packages
+    - name: Install requests python package
       pip:
-        name: requests==2.23.0
+        name: requests
+        extra_args: --break-system-packages
       tags:
         - docker
 
-    - name: Install python packages
+    - name: Install jsondiff python package
       pip:
         name: jsondiff
+        extra_args: --break-system-packages
       tags:
         - docker
 
@@ -168,7 +171,7 @@
 
     - name: Render portainer stack
       template:
-        src: ./data/stack-templates/0.portainer.j2
+        src: ./stack-templates/0.portainer.j2
         dest: "{{stack_disk}}/0.portainer.yaml"
       tags:
         - docker
@@ -185,7 +188,7 @@
 
     - name: Render nginx proxy management stack
       template:
-        src: ./data/stack-templates/1.nginx-proxy-manager.j2
+        src: ./stack-templates/1.nginx-proxy-manager.j2
         dest: "{{stack_disk}}/1.nginx-proxy.yaml"
       tags:
         - docker
@@ -202,7 +205,7 @@
 
     - name: Render runner stack
       template:
-        src: ./data/stack-templates/2.runner.j2
+        src: ./stack-templates/2.runner.j2
         dest: "{{stack_disk}}/2.runner.yaml"
       tags:
         - docker

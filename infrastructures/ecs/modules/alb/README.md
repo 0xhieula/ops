@@ -27,20 +27,20 @@ No modules.
 
 ## Inputs
 
-| Name | Description | Type | Default | Required |
-|------|-------------|------|---------|:--------:|
-| <a name="input_create_alb"></a> [create\_alb](#input\_create\_alb) | Create a ALB or not | `bool` | `true` | no |
-| <a name="input_create_target_group"></a> [create\_target\_group](#input\_create\_target\_group) | Set to true to create a Target Group | `bool` | `false` | no |
-| <a name="input_default_domain"></a> [default\_domain](#input\_default\_domain) | The default domain for the ALB | `string` | `"*.gen.vmo.dev"` | no |
+| Name | Description | Type | Default                   | Required |
+|------|-------------|------|---------------------------|:--------:|
+| <a name="input_create_alb"></a> [create\_alb](#input\_create\_alb) | Create a ALB or not | `bool` | `true`                    | no |
+| <a name="input_create_target_group"></a> [create\_target\_group](#input\_create\_target\_group) | Set to true to create a Target Group | `bool` | `false`                   | no |
+| <a name="input_default_domain"></a> [default\_domain](#input\_default\_domain) | The default domain for the ALB | `string` | `"*.example.com"`         | no |
 | <a name="input_dns_host_zone"></a> [dns\_host\_zone](#input\_dns\_host\_zone) | The Route53 zone id | `string` | `"Z0348938167NKF2HPEFQL"` | no |
-| <a name="input_enable_http"></a> [enable\_http](#input\_enable\_http) | Set to true to create a HTTP listener | `bool` | `false` | no |
-| <a name="input_enable_https"></a> [enable\_https](#input\_enable\_https) | Set to true to create a HTTPS listener | `bool` | `false` | no |
-| <a name="input_health_check_path"></a> [health\_check\_path](#input\_health\_check\_path) | The path in which the ALB will send health checks | `string` | `"/"` | no |
-| <a name="input_health_check_port"></a> [health\_check\_port](#input\_health\_check\_port) | The port to which the ALB will send health checks | `number` | `80` | no |
-| <a name="input_project"></a> [project](#input\_project) | The project name | `string` | `"Genesis"` | no |
-| <a name="input_sgs"></a> [sgs](#input\_sgs) | Default security groups for the instances | `list(string)` | `[]` | no |
-| <a name="input_subnets"></a> [subnets](#input\_subnets) | The subnets to deploy the ALB | `list(string)` | `[]` | no |
-| <a name="input_vpc"></a> [vpc](#input\_vpc) | The vpc to deploy the ALB | `string` | `""` | no |
+| <a name="input_enable_http"></a> [enable\_http](#input\_enable\_http) | Set to true to create a HTTP listener | `bool` | `false`                   | no |
+| <a name="input_enable_https"></a> [enable\_https](#input\_enable\_https) | Set to true to create a HTTPS listener | `bool` | `false`                   | no |
+| <a name="input_health_check_path"></a> [health\_check\_path](#input\_health\_check\_path) | The path in which the ALB will send health checks | `string` | `"/"`                     | no |
+| <a name="input_health_check_port"></a> [health\_check\_port](#input\_health\_check\_port) | The port to which the ALB will send health checks | `number` | `80`                      | no |
+| <a name="input_project"></a> [project](#input\_project) | The project name | `string` | `"Genesis"`               | no |
+| <a name="input_sgs"></a> [sgs](#input\_sgs) | Default security groups for the instances | `list(string)` | `[]`                      | no |
+| <a name="input_subnets"></a> [subnets](#input\_subnets) | The subnets to deploy the ALB | `list(string)` | `[]`                      | no |
+| <a name="input_vpc"></a> [vpc](#input\_vpc) | The vpc to deploy the ALB | `string` | `""`                      | no |
 
 ## Outputs
 
