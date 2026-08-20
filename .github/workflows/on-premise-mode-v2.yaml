@@ -34,7 +34,7 @@ jobs:
   verify:
     name: Verify lint and scan issue
     if: github.event_name == 'push' || github.event_name == 'workflow_dispatch' || (github.event_name == 'pull_request' && github.event.pull_request.merged == true)
-    runs-on: ["${{ inputs.runner_label }}"]
+    runs-on: [self-hosted, runner, "${{ inputs.runner_label }}"]
     needs: initialize
 
     steps:
@@ -53,7 +53,7 @@ jobs:
   build:
     name: Build image and Push Docker Image
     if: github.event_name == 'push' || github.event_name == 'workflow_dispatch' || (github.event_name == 'pull_request' && github.event.pull_request.merged == true)
-    runs-on: ["${{ inputs.runner_label }}"]
+    runs-on: [self-hosted, runner, "${{ inputs.runner_label }}"]
     needs:
       - initialize
       - verify
@@ -92,7 +92,7 @@ jobs:
   deploy:
     name: Deploy
     if: github.event_name == 'push' || github.event_name == 'workflow_dispatch' || (github.event_name == 'pull_request' && github.event.pull_request.merged == true)
-    runs-on: ["${{ inputs.runner_label }}"]
+    runs-on: [self-hosted, runner, "${{ inputs.runner_label }}"]
     needs:
       - initialize
       - build
