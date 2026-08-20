@@ -26,7 +26,7 @@ jobs:
           SERVICE_NAME="${{ vars.service }}-${BRANCH}"
           
           echo "IMAGE=$IMAGE" >> $GITHUB_OUTPUT
-          echo "SERVICE_NAME=SERVICE_NAME" >> $GITHUB_OUTPUT
+          echo "SERVICE_NAME=$SERVICE_NAME" >> $GITHUB_OUTPUT
     outputs:
       IMAGE: ${{ steps.vars.outputs.IMAGE }}
       SERVICE_NAME: ${{ steps.vars.outputs.SERVICE_NAME }}
@@ -103,7 +103,7 @@ jobs:
 
       - name: Deploy stack to Swarm
         run: |
-          docker service update --image ${{needs.initialize.outputs.IMAGE}} ${{needs.initialize.outputs.SERVICE_NAME}}
+          docker service update --with-registry-auth --image ${{needs.initialize.outputs.IMAGE}} ${{needs.initialize.outputs.SERVICE_NAME}}
 
       - name: Update result in PR
         if: github.event_name == 'pull_request'
