@@ -2,11 +2,16 @@ name: Runner on-premise mode
 
 on:
   workflow_call:
+    inputs:
+      runner_label:
+        required: true
+        type: string
+
 
 jobs:
   initialize:
     name: Setup runner environment
-    if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.pull_request.merged == true))
+    if: github.event_name == 'push' || github.event_name == 'workflow_dispatch' || (github.event_name == 'pull_request' && github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.pull_request.merged == true))
     runs-on: [ "${{ inputs.runner_label }}" ]
     steps:
       - name: Set image name and tag
@@ -28,7 +33,7 @@ jobs:
 
   verify:
     name: Verify lint and scan issue
-    if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.pull_request.merged == true)
+    if: github.event_name == 'push' || github.event_name == 'workflow_dispatch' || (github.event_name == 'pull_request' && github.event.pull_request.merged == true)
     runs-on: ["${{ inputs.runner_label }}"]
     needs: initialize
 
@@ -47,7 +52,7 @@ jobs:
 
   build:
     name: Build image and Push Docker Image
-    if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.pull_request.merged == true)
+    if: github.event_name == 'push' || github.event_name == 'workflow_dispatch' || (github.event_name == 'pull_request' && github.event.pull_request.merged == true)
     runs-on: ["${{ inputs.runner_label }}"]
     needs:
       - initialize
@@ -86,7 +91,7 @@ jobs:
 
   deploy:
     name: Deploy
-    if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.pull_request.merged == true)
+    if: github.event_name == 'push' || github.event_name == 'workflow_dispatch' || (github.event_name == 'pull_request' && github.event.pull_request.merged == true)
     runs-on: ["${{ inputs.runner_label }}"]
     needs:
       - initialize
